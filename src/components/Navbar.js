@@ -30,20 +30,20 @@ export default function Navbar() {
     <>
       <nav
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled
-            ? "bg-[#064ca2]/95 backdrop-blur-md shadow-lg border-b border-white/30 py-3.5"
-            : "bg-transparent py-6"
+            ? "bg-[#064ca2]/95 backdrop-blur-md shadow-lg border-b border-white/30 py-2"
+            : "bg-transparent py-3"
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
 
             {/* Left: Brand Logo */}
-            <div className="relative flex items-center cursor-pointer">
+            <div className="relative flex items-center cursor-pointer w-[220px] h-[100px]">
               {/* Dark Logo (shown normally on light Hero background) */}
               <img
                 src="/logo/accurate-logo.webp"
                 alt="Accurate PGDM Logo"
-                className={`h-10 sm:h-12 w-auto object-contain transition-opacity duration-500 ${
+                className={`w-full h-full object-contain transition-opacity duration-500 ${
                   scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
                 }`}
               />
@@ -51,7 +51,7 @@ export default function Navbar() {
               <img
                 src="/logo/accurate-white-logo.png"
                 alt="Accurate PGDM Logo"
-                className={`absolute inset-0 h-full w-auto object-contain transition-opacity duration-500 ${
+                className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
                   scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
                 }`}
               />

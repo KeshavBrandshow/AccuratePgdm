@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 export default function Hero() {
   const [scrollY, setScrollY] = useState(0);
   const [vh, setVh] = useState(800); // Default fallback height
+  const [isDesktop, setIsDesktop] = useState(false);
   const containerRef = useRef(null);
   const scrollTargetRef = useRef(0);
   const currentScrollRef = useRef(0);
@@ -13,6 +14,7 @@ export default function Hero() {
     currentScrollRef.current = window.scrollY;
     setScrollY(window.scrollY);
     setVh(window.innerHeight);
+    setIsDesktop(window.innerWidth >= 1024);
 
     const handleScroll = () => {
       scrollTargetRef.current = window.scrollY;
@@ -37,6 +39,7 @@ export default function Hero() {
 
     const handleResize = () => {
       setVh(window.innerHeight);
+      setIsDesktop(window.innerWidth >= 1024);
     };
     window.addEventListener("resize", handleResize);
 
@@ -51,19 +54,25 @@ export default function Hero() {
   const transitionRange = vh * 1.2;
   const p = Math.min(Math.max(scrollY / transitionRange, 0), 1);
 
-  // Responsive check for morphing transition (best on desktop screen sizes)
-  // We can interpolate positions for desktop screens (width >= 1024px)
-  const isDesktop = typeof window !== "undefined" ? window.innerWidth >= 1024 : true;
-
   // Desktop Interpolated styles for the morphing video card (with padding on fully expanded state)
   const desktopVideoStyle = {
     position: "absolute",
-    left: `${60 * (1 - p) + 5 * p}%`,
-    top: `${29 * (1 - p) + 122 * p}vh`, // slides down from 29vh to 122vh (120vh max scroll + 2vh padding)
-    width: `${36 + 54 * p}%`,
-    height: `${48 + 50 * p}vh`, // expands to 98vh height (leaving 2vh top and 0vh bottom padding)
-    borderRadius: `${24 * (1 - p) + 16 * p}px`,
+    left: `calc((50% + 192px) * (1 - ${p}) + (50% - 461.5px) * ${p})`,
+    top: `calc((50vh + 10px) * (1 - ${p}) + (170vh - 259.5px) * ${p})`, // slides down to center on scroll
+    width: `calc(448px * (1 - ${p}) + 923px * ${p})`,
+    height: `calc(253px * (1 - ${p}) + 519px * ${p})`,
+    borderRadius: "24px",
     transition: "none", // Manual control based on scroll position
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
+
+  const desktopVideoInnerStyle = {
+    width: `calc(392px * (1 - ${p}) + 867px * ${p})`,
+    height: `calc(221px * (1 - ${p}) + 487px * ${p})`,
+    borderRadius: "12px",
+    objectFit: "cover",
   };
 
   // Mobile / Tablet fallback styles (simple scale and slide)
@@ -250,20 +259,22 @@ export default function Hero() {
         {isDesktop && (
           <div
             style={desktopVideoStyle}
-            className="z-20 overflow-hidden border border-white/10 shadow-2xl group"
+            className="z-20 overflow-hidden border border-white/10 shadow-2xl group bg-black/40 backdrop-blur-md"
           >
-            {/* Campus Tour Looping Video */}
-            <video
-              className="w-full h-full object-cover scale-105"
-              src="/vedio/accurate-video.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
+            <div style={desktopVideoInnerStyle} className="relative overflow-hidden scale-105">
+              {/* Campus Tour Looping Video */}
+              <video
+                className="w-full h-full object-cover"
+                src="/vedio/accurate-video.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
 
-            {/* Video overlay mask */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
+              {/* Video overlay mask */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
+            </div>
 
             {/* Bottom labels (fades out as video expands completely) */}
             <div
