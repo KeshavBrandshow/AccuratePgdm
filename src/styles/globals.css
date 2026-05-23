@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #064ca2;
+  --secondary: #e6a600;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+}
