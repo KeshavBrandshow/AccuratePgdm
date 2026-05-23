@@ -69,9 +69,9 @@ export default function Hero() {
   };
 
   const desktopVideoInnerStyle = {
-    width: `calc(392px * (1 - ${p}) + 867px * ${p})`,
-    height: `calc(221px * (1 - ${p}) + 487px * ${p})`,
-    borderRadius: "12px",
+    width: "100%",
+    height: "100%",
+    borderRadius: "24px",
     objectFit: "cover",
   };
 
