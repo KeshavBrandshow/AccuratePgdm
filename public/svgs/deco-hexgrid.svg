@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none">
+  <polygon points="110,20 145,37 145,72 110,89 75,72 75,37" stroke="#064ca2" stroke-width="1.8" fill="none" opacity="0.25"/>
+  <polygon points="110,65 145,82 145,117 110,134 75,117 75,82" stroke="#064ca2" stroke-width="1.8" fill="none" opacity="0.30"/>
+  <polygon points="110,110 145,127 145,162 110,179 75,162 75,127" stroke="#064ca2" stroke-width="1.8" fill="none" opacity="0.25"/>
+
+  <polygon points="145,42 180,59 180,94 145,111 110,94 110,59" stroke="#064ca2" stroke-width="1.5" fill="none" opacity="0.20"/>
+  <polygon points="75,42 110,59 110,94 75,111 40,94 40,59" stroke="#064ca2" stroke-width="1.5" fill="none" opacity="0.20"/>
+  <polygon points="145,87 180,104 180,139 145,156 110,139 110,104" stroke="#e6a600" stroke-width="1.8" fill="none" opacity="0.30"/>
+  <polygon points="75,87 110,104 110,139 75,156 40,139 40,104" stroke="#064ca2" stroke-width="1.5" fill="none" opacity="0.20"/>
+
+  <circle cx="110" cy="100" r="5" fill="#e6a600" opacity="0.40"/>
+  <circle cx="145" cy="117" r="3.5" fill="#064ca2" opacity="0.30"/>
+  <circle cx="75" cy="117" r="3.5" fill="#064ca2" opacity="0.30"/>
+</svg>

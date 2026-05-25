@@ -8,17 +8,87 @@ export default function StudentLife() {
       {/* Subtle Background Glow */}
       <div className="absolute top-1/2 left-1/3 w-[600px] h-[600px] bg-blue-100/30 rounded-full blur-[140px] pointer-events-none" />
 
+      {/* Background Campus Circles SVG */}
+      {/* Decorative geometric accent - right */}
+      <img
+        src="/svgs/deco-right.svg"
+        alt=""
+        className="absolute top-8 left-4 w-36 h-36 md:w-52 md:h-52 opacity-100 pointer-events-none select-none z-10 animate-slow-spin"
+      />
+
+      {/* Decorative dot-grid accent - left */}
+      {/* <img
+        src="/svgs/deco-left.svg"
+        alt=""
+        className="absolute top-8 left-4 w-36 h-36 md:w-52 md:h-52 opacity-100 pointer-events-none select-none z-10"
+      /> */}
+
+      {/* Tailwind CSS Flip Keyframes & Animations inside style tag */}
+      <style jsx global>{`
+
+        @keyframes slowSpin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .animate-slow-spin {
+          animation: slowSpin 20s linear infinite;
+        }
+
+        @keyframes flipLeft {
+          0% {
+            transform: rotateY(0deg) scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: rotateY(-90deg) scale(0.98);
+            opacity: 0.5;
+          }
+          100% {
+            transform: rotateY(-180deg) scale(0.95);
+            opacity: 0;
+          }
+        }
+
+        @keyframes flipRight {
+          0% {
+            transform: rotateY(-180deg) scale(0.95);
+            opacity: 0;
+          }
+          50% {
+            transform: rotateY(-90deg) scale(0.98);
+            opacity: 0.5;
+          }
+          100% {
+            transform: rotateY(0deg) scale(1);
+            opacity: 1;
+          }
+        }
+
+        .animate-flip-left {
+          animation: flipLeft 0.5s forwards ease-in-out;
+        }
+
+        .animate-flip-right {
+          animation: flipRight 0.5s forwards ease-in-out;
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Content Layout Grid */}
         <div className="flex flex-col lg:flex-row gap-8 items-stretch animate-fadeIn">
-          
+
           {/* Left Grid: Student Life Cards */}
           <div className="w-full lg:w-7/12 flex flex-col gap-4">
-            
+
             {/* Top Subgrid (Student Projects & Clubs) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              
+
               {/* Card 1: Student Projects */}
               <div className="group relative h-[220px] rounded-2xl overflow-hidden border border-zinc-200 shadow-xl cursor-pointer">
                 <img
@@ -27,7 +97,7 @@ export default function StudentLife() {
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                
+
                 {/* Text Container with Hover Slide-up Description */}
                 <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-col text-left text-white transition-all duration-355 ease-out transform group-hover:-translate-y-1">
                   <div className="flex items-center gap-1.5">
@@ -50,7 +120,7 @@ export default function StudentLife() {
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                
+
                 {/* Text Container with Hover Slide-up Description */}
                 <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-col text-left text-white transition-all duration-355 ease-out transform group-hover:-translate-y-1">
                   <div className="flex items-center gap-1.5">
@@ -74,7 +144,7 @@ export default function StudentLife() {
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-              
+
               {/* Text Container with Hover Slide-up Description */}
               <div className="absolute bottom-5 left-5 right-5 z-20 flex flex-col text-left text-white transition-all duration-355 ease-out transform group-hover:-translate-y-1">
                 <div className="flex items-center gap-1.5">
@@ -95,9 +165,9 @@ export default function StudentLife() {
           <div className="w-full lg:w-5/12 flex flex-col justify-between border border-zinc-200 rounded-2xl p-6 bg-white shadow-2xl relative">
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-zinc-900 text-left tracking-tight">Experience a Virtual Campus Tour</h3>
-              
+
               {/* Matterport Tour Frame Mock (Click triggers fullscreen modal) */}
-              <div 
+              <div
                 onClick={() => setIsTourOpen(true)}
                 className="relative rounded-xl overflow-hidden border border-zinc-200 h-[340px] shadow-lg group cursor-pointer"
               >
@@ -140,7 +210,7 @@ export default function StudentLife() {
                 </div>
               </div>
             </div>
-            
+
             <div className="text-left mt-6">
               <p className="text-xs text-zinc-600 leading-normal">
                 Take a fully immersive 3D digital walk through our state-of-the-art academic workspaces, lecture theatres, and incubator labs.
@@ -156,7 +226,7 @@ export default function StudentLife() {
       {isTourOpen && (
         <div className="fixed inset-0 z-[9999] bg-black/95 flex flex-col justify-center items-center p-4 md:p-8 animate-fadeIn">
           {/* Close Button */}
-          <button 
+          <button
             onClick={() => setIsTourOpen(false)}
             className="absolute top-4 right-4 z-[10000] text-white hover:text-[#e6a600] transition duration-300 w-12 h-12 flex items-center justify-center bg-black/60 rounded-full border border-zinc-700/80 cursor-pointer shadow-2xl"
             title="Close Tour"

@@ -15,8 +15,22 @@ export default function CorporateHub() {
       {/* Subtle Light Gradient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-100/40 rounded-full blur-[160px] pointer-events-none" />
 
+      {/* Decorative network nodes - top right */}
+      <img
+        src="/svgs/deco-network.svg"
+        alt=""
+        className="absolute top-8 right-8 w-48 h-48 md:w-60 md:h-60 opacity-100 pointer-events-none select-none z-0 animate-float"
+      />
+
+      {/* Decorative hex grid - bottom left */}
+      {/* <img
+        src="/svgs/deco-hexgrid.svg"
+        alt=""
+        className="absolute bottom-8 left-8 w-44 h-44 md:w-56 md:h-56 opacity-100 pointer-events-none select-none z-0 animate-float"
+      /> */}
+
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Main Section Header */}
         <div className="text-left mb-16">
           <span className="text-zinc-400 text-xs font-black uppercase tracking-widest block mb-2">CAMPUS & ECOSYSTEM</span>
@@ -31,10 +45,10 @@ export default function CorporateHub() {
         {activeTab === "student-life" ? (
           /* Tab 4: Glimpse of Student Life (Screenshot 2 layout) */
           <div className="flex flex-col lg:flex-row gap-8 items-stretch animate-fadeIn">
-            
+
             {/* Left Grid: Student Life Cards */}
             <div className="w-full lg:w-7/12 flex flex-col gap-4">
-              
+
               {/* Top Subgrid (Student Projects & Clubs) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Card 1: Student Projects */}
@@ -45,7 +59,7 @@ export default function CorporateHub() {
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
-                  
+
                   {/* Text Container with Hover Slide-up Description */}
                   <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-col text-left text-white transition-all duration-300 transform group-hover:-translate-y-1">
                     <div className="flex items-center gap-1.5">
@@ -68,7 +82,7 @@ export default function CorporateHub() {
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
-                  
+
                   {/* Circular Arrow in Top Right */}
                   <div className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full border border-zinc-700/80 flex items-center justify-center text-zinc-300 bg-black/40 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
                     <svg className="w-3.5 h-3.5 transform group-hover:rotate-45 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -94,7 +108,7 @@ export default function CorporateHub() {
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
-                
+
                 {/* Text Container with Hover Slide-up Description */}
                 <div className="absolute bottom-5 left-5 right-5 z-20 flex flex-col text-left text-white transition-all duration-300 transform group-hover:-translate-y-1">
                   <div className="flex items-center gap-1.5">
@@ -115,7 +129,7 @@ export default function CorporateHub() {
             <div className="w-full lg:w-5/12 flex flex-col justify-between border border-zinc-200 rounded-2xl p-6 bg-white shadow-2xl relative">
               <div className="space-y-4 mb-6">
                 <h3 className="text-xl font-bold text-zinc-900 text-left tracking-tight">Experience a Virtual Campus Tour</h3>
-                
+
                 {/* Matterport Tour Frame Mock - enlarged height */}
                 <div className="relative rounded-xl overflow-hidden border border-zinc-200 h-[340px] shadow-lg group">
                   <img
@@ -163,11 +177,10 @@ export default function CorporateHub() {
                     <button
                       key={item.id}
                       onClick={() => setActiveTab(item.id)}
-                      className={`px-3 py-1.5 rounded-full text-[10px] font-extrabold transition duration-300 cursor-pointer ${
-                        activeTab === item.id
+                      className={`px-3 py-1.5 rounded-full text-[10px] font-extrabold transition duration-300 cursor-pointer ${activeTab === item.id
                           ? "bg-[#064ca2] text-white"
                           : "bg-white text-zinc-600 border border-zinc-200 hover:border-zinc-300"
-                      }`}
+                        }`}
                     >
                       {item.label}
                     </button>
@@ -181,7 +194,7 @@ export default function CorporateHub() {
         ) : (
           /* Tab 1, 2, 3: Explore Careers / Leadership / News (Screenshot 1 layout) */
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-between animate-fadeIn">
-            
+
             {/* Left Side Tab Detail Text */}
             <div className="w-full lg:w-[30%] text-left space-y-6">
               {activeTab === "careers" && (
@@ -277,20 +290,18 @@ export default function CorporateHub() {
                     className="border-b border-zinc-200 py-6 flex items-center justify-between group cursor-pointer transition-all duration-300"
                   >
                     <span
-                      className={`text-sm sm:text-base font-extrabold tracking-tight transition duration-300 ${
-                        isActive
+                      className={`text-sm sm:text-base font-extrabold tracking-tight transition duration-300 ${isActive
                           ? "text-[#064ca2]"
                           : "text-zinc-500 group-hover:text-zinc-900"
-                      }`}
+                        }`}
                     >
                       {item.label}
                     </span>
                     <div
-                      className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 ${
-                        isActive
+                      className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 ${isActive
                           ? "bg-[#064ca2] border-[#064ca2] text-white"
                           : "border-zinc-300 text-zinc-500 group-hover:border-zinc-900 group-hover:text-zinc-900"
-                      }`}
+                        }`}
                     >
                       <svg
                         className="w-3.5 h-3.5 transform group-hover:rotate-45 transition-transform duration-300"
@@ -314,6 +325,18 @@ export default function CorporateHub() {
 
       {/* Embedded CSS Animations */}
       <style jsx global>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-15px);
+          }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
         @keyframes fadeIn {
           from {
             opacity: 0;

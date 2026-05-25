@@ -76,8 +76,8 @@ export default function Programmes() {
   const tabs = ["All", "Core Business", "Finance & Tech", "Operations & Supply"];
 
   // Filter data based on selected tab
-  const filteredData = activeTab === "All" 
-    ? specializationsData 
+  const filteredData = activeTab === "All"
+    ? specializationsData
     : specializationsData.filter(item => item.category === activeTab);
 
   const scrollLeft = () => {
@@ -94,8 +94,62 @@ export default function Programmes() {
 
   return (
     <section id="programmes-section" className="w-full bg-white py-24 px-4 sm:px-6 lg:px-8 relative border-t border-zinc-200 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        
+
+      {/* Background Flow SVG */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+        <svg className="w-full h-full min-h-[700px]" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M-100,80 C200,100 500,550 900,480 C1200,430 1350,650 1500,750" stroke="url(#prog-flow-grad-1)" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="6 8" opacity="0.75" className="flow-dash" />
+          <path d="M-100,100 C200,120 500,570 900,500 C1200,450 1350,670 1500,770" stroke="url(#prog-flow-grad-2)" strokeWidth="1.5" strokeLinecap="round" opacity="0.45" />
+          <circle cx="520" cy="450" r="4" fill="#064ca2" opacity="0.9" className="pulse-node" />
+          <circle cx="520" cy="450" r="8" stroke="#064ca2" strokeWidth="1" fill="none" opacity="0.55" className="pulse-ring" />
+          <circle cx="950" cy="480" r="4" fill="#e6a600" opacity="0.9" className="pulse-node" />
+          <circle cx="950" cy="480" r="8" stroke="#e6a600" strokeWidth="1" fill="none" opacity="0.55" className="pulse-ring" />
+          <defs>
+            <linearGradient id="prog-flow-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#064ca2" />
+              <stop offset="50%" stopColor="#e6a600" />
+              <stop offset="100%" stopColor="#064ca2" />
+            </linearGradient>
+            <linearGradient id="prog-flow-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#e6a600" />
+              <stop offset="60%" stopColor="#064ca2" />
+              <stop offset="100%" stopColor="#10b981" />
+            </linearGradient>
+            <style>{`
+              @keyframes flow {
+                from { stroke-dashoffset: 28; }
+                to { stroke-dashoffset: 0; }
+              }
+              @keyframes pulse {
+                0% { transform: scale(1); opacity: 0.9; }
+                50% { transform: scale(1.25); opacity: 1; }
+                100% { transform: scale(1); opacity: 0.9; }
+              }
+              @keyframes pulseRing {
+                0% { transform: scale(1); opacity: 0.55; }
+                50% { transform: scale(1.4); opacity: 0.15; }
+                100% { transform: scale(1); opacity: 0.55; }
+              }
+              .flow-dash {
+                animation: flow 8s linear infinite;
+              }
+              .pulse-node {
+                transform-box: fill-box;
+                transform-origin: center;
+                animation: pulse 3s ease-in-out infinite;
+              }
+              .pulse-ring {
+                transform-box: fill-box;
+                transform-origin: center;
+                animation: pulseRing 3s ease-in-out infinite;
+              }
+            `}</style>
+          </defs>
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+
         {/* Header with Slider Controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
@@ -136,11 +190,10 @@ export default function Programmes() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-6 py-2.5 rounded-full text-xs font-bold tracking-wide transition duration-300 cursor-pointer ${
-                activeTab === tab
+              className={`px-6 py-2.5 rounded-full text-xs font-bold tracking-wide transition duration-300 cursor-pointer ${activeTab === tab
                   ? "bg-zinc-900 text-white shadow-xs"
                   : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
-              }`}
+                }`}
             >
               {tab}
             </button>
@@ -158,7 +211,7 @@ export default function Programmes() {
               key={spec.id}
               className="min-w-[320px] sm:min-w-[380px] md:min-w-[420px] bg-zinc-50 border border-zinc-200/85 rounded-3xl overflow-hidden shadow-xs hover:shadow-md transition duration-300 flex flex-col"
             >
-              
+
               {/* Cover Image & Video Overlay Icon */}
               <div className="relative aspect-video w-full overflow-hidden bg-zinc-200 group">
                 <img
@@ -166,7 +219,7 @@ export default function Programmes() {
                   alt={spec.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                 />
-                
+
                 {/* Visual Glassmorphic play button */}
                 <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
                   <div className="w-12 h-12 rounded-full bg-white/25 backdrop-blur-md flex items-center justify-center border border-white/40 shadow-lg group-hover:scale-110 group-hover:bg-white/45 transition duration-300">

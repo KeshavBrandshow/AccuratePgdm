@@ -76,13 +76,66 @@ export default function PracticalLearning() {
 
   return (
     <section id="practical-learning-section" className="w-full bg-zinc-50 py-24 px-4 sm:px-6 lg:px-8 relative border-t border-zinc-200">
-      
+
       {/* Dynamic Background Glows */}
       <div className="absolute top-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
+      {/* Background Flow SVG */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+        <svg className="w-full h-full min-h-[900px]" viewBox="0 0 1440 1000" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M1500,80 C1100,100 800,450 400,600 C150,650 -50,850 -100,950" stroke="url(#prac-flow-grad-1)" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="6 8" opacity="0.75" className="flow-dash" />
+          <path d="M1500,100 C1100,120 800,470 400,620 C150,670 -50,870 -100,970" stroke="url(#prac-flow-grad-2)" strokeWidth="1.5" strokeLinecap="round" opacity="0.45" />
+          <circle cx="810" cy="420" r="4" fill="#e6a600" opacity="0.9" className="pulse-node" />
+          <circle cx="810" cy="420" r="8" stroke="#e6a600" strokeWidth="1" fill="none" opacity="0.55" className="pulse-ring" />
+          <circle cx="390" cy="610" r="4" fill="#064ca2" opacity="0.9" className="pulse-node" />
+          <circle cx="390" cy="610" r="8" stroke="#064ca2" strokeWidth="1" fill="none" opacity="0.55" className="pulse-ring" />
+          <defs>
+            <linearGradient id="prac-flow-grad-1" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#e6a600" />
+              <stop offset="50%" stopColor="#064ca2" />
+              <stop offset="100%" stopColor="#e6a600" />
+            </linearGradient>
+            <linearGradient id="prac-flow-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#064ca2" />
+              <stop offset="60%" stopColor="#e6a600" />
+              <stop offset="100%" stopColor="#10b981" />
+            </linearGradient>
+            <style>{`
+              @keyframes flow {
+                from { stroke-dashoffset: 28; }
+                to { stroke-dashoffset: 0; }
+              }
+              @keyframes pulse {
+                0% { transform: scale(1); opacity: 0.9; }
+                50% { transform: scale(1.25); opacity: 1; }
+                100% { transform: scale(1); opacity: 0.9; }
+              }
+              @keyframes pulseRing {
+                0% { transform: scale(1); opacity: 0.55; }
+                50% { transform: scale(1.4); opacity: 0.15; }
+                100% { transform: scale(1); opacity: 0.55; }
+              }
+              .flow-dash {
+                animation: flow 8s linear infinite;
+              }
+              .pulse-node {
+                transform-box: fill-box;
+                transform-origin: center;
+                animation: pulse 3s ease-in-out infinite;
+              }
+              .pulse-ring {
+                transform-box: fill-box;
+                transform-origin: center;
+                animation: pulseRing 3s ease-in-out infinite;
+              }
+            `}</style>
+          </defs>
+        </svg>
+      </div>
+
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Section Title */}
         <div className="mb-20 text-center lg:text-left">
           <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 tracking-tight leading-tight max-w-2xl">
@@ -103,7 +156,7 @@ export default function PracticalLearning() {
               className="bg-white border border-zinc-200 rounded-[32px] p-6 md:p-8 lg:p-12 shadow-md hover:shadow-xl transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center sticky top-28"
               style={{ zIndex: card.id * 10 }}
             >
-              
+
               {/* Left Column: Visual Video Banner */}
               <div className="lg:col-span-6 relative aspect-video w-full rounded-2xl overflow-hidden bg-zinc-100 group shadow-sm">
                 <img
@@ -111,7 +164,7 @@ export default function PracticalLearning() {
                   alt={card.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                 />
-                
+
                 {/* Dark tint gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10 flex flex-col justify-between p-6" />
 
@@ -141,7 +194,7 @@ export default function PracticalLearning() {
 
               {/* Right Column: Context & Stats */}
               <div className="lg:col-span-6 space-y-8 text-left">
-                
+
                 {/* Pill Badge */}
                 <div className="inline-block">
                   <span className="bg-zinc-100 text-zinc-800 text-[10px] font-black tracking-widest uppercase px-3.5 py-1.5 rounded-full border border-zinc-200">
@@ -175,14 +228,14 @@ export default function PracticalLearning() {
 
                 {/* Mini Stats Boxes */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  
+
                   {/* Stat 1 */}
                   <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl p-5 flex flex-col justify-between h-36">
                     <div>
                       <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider block">{card.stat1Label}</span>
                       <span className="text-2xl font-black text-zinc-900 mt-1 block">{card.stat1Val}</span>
                     </div>
-                    
+
                     {/* SVG rising trend graph */}
                     <div className="w-full h-8 mt-2 overflow-visible">
                       <svg className="w-full h-full" viewBox="0 0 100 30" preserveAspectRatio="none">
@@ -214,7 +267,7 @@ export default function PracticalLearning() {
                       <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider block">{card.stat2Label}</span>
                       <span className="text-2xl font-black text-zinc-900 mt-1 block">{card.stat2Val}</span>
                     </div>
-                    
+
                     {/* Visual stack indicator */}
                     <div className="flex items-center gap-1 mt-2">
                       <div className="flex -space-x-2 overflow-hidden">

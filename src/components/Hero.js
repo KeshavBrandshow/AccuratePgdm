@@ -121,7 +121,7 @@ export default function Hero() {
     <div
       ref={containerRef}
       className="relative w-full bg-white text-zinc-900 overflow-hidden"
-      style={{ 
+      style={{
         minHeight: isDesktop ? `${(SCROLL_TRACK_FACTOR + 1.0) * 100}vh` : "auto",
         "--scroll-p": 0
       }} // Give extra scroll track only for desktop transition

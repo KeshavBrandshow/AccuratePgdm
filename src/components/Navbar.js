@@ -30,30 +30,29 @@ export default function Navbar() {
     <>
       <nav
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled
-            ? "bg-[#064ca2]/95 backdrop-blur-md shadow-lg border-b border-white/30 py-2"
-            : "bg-transparent py-3"
+          ? "bg-[#064ca2]/80 backdrop-blur-md shadow-lg border-b border-white/20 py-1.5"
+          : "bg-transparent py-2.5"
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
 
             {/* Left: Brand Logo */}
-            <div className="relative flex items-center cursor-pointer w-[220px] h-[100px]">
+            <div className={`relative flex items-center cursor-pointer transition-all duration-500 ${scrolled ? "w-[210px] h-[82px]" : "w-[230px] h-[90px]"
+              }`}>
               {/* Dark Logo (shown normally on light Hero background) */}
               <img
                 src="/logo/accurate-logo.webp"
                 alt="Accurate PGDM Logo"
-                className={`w-full h-full object-contain transition-opacity duration-500 ${
-                  scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-                }`}
+                className={`w-full h-full object-contain transition-opacity duration-500 ${scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+                  }`}
               />
               {/* White Logo (shown on scrolled blue background) */}
               <img
                 src="/logo/accurate-white-logo.png"
                 alt="Accurate PGDM Logo"
-                className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
-                  scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
-                }`}
+                className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+                  }`}
               />
             </div>
 
@@ -79,8 +78,8 @@ export default function Navbar() {
               <a
                 href="#apply"
                 className={`px-5 py-2 rounded-full border text-xs font-black uppercase tracking-wider transition-all duration-300 shadow-sm ${scrolled
-                    ? "border-white/30 text-white bg-white/10 hover:bg-white hover:text-[#064ca2] hover:border-white"
-                    : "border-[#064ca2]/30 text-[#064ca2] bg-[#064ca2]/5 hover:bg-[#064ca2] hover:text-white hover:border-[#064ca2]"
+                  ? "border-white/30 text-white bg-white/10 hover:bg-white hover:text-[#064ca2] hover:border-white"
+                  : "border-[#064ca2]/30 text-[#064ca2] bg-[#064ca2]/5 hover:bg-[#064ca2] hover:text-white hover:border-[#064ca2]"
                   }`}
               >
                 Apply Now ↗
