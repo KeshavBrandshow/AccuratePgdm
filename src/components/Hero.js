@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 
+// Configuration variables for managing scroll animation speed and smoothness
+const SCROLL_TRACK_FACTOR = 0.7; // How much you need to scroll to finish the animation (e.g. 0.7x viewport height. Smaller = faster animation)
+const EASING_SPEED_DOWN = 0.05;    // Easing speed when scrolling down (smaller = smoother, floaty feel)
+const EASING_SPEED_UP = 0.12;      // Easing speed when scrolling back up (larger = snaps back quickly, more responsive)
+
 export default function Hero() {
-  const [scrollY, setScrollY] = useState(0);
-  const [vh, setVh] = useState(800); // Default fallback height
   const [isDesktop, setIsDesktop] = useState(false);
   const containerRef = useRef(null);
+  const textPanelRef = useRef(null);
   const scrollTargetRef = useRef(0);
   const currentScrollRef = useRef(0);
 
@@ -12,60 +16,84 @@ export default function Hero() {
     // Set initial scroll coordinates on mount
     scrollTargetRef.current = window.scrollY;
     currentScrollRef.current = window.scrollY;
-    setScrollY(window.scrollY);
-    setVh(window.innerHeight);
     setIsDesktop(window.innerWidth >= 1024);
 
-    const handleScroll = () => {
-      scrollTargetRef.current = window.scrollY;
-    };
-
-    let animationFrameId;
+    let animationFrameId = null;
     const updateScrollPhysics = () => {
       // Lerping formula for smooth deceleration easing
       const diff = scrollTargetRef.current - currentScrollRef.current;
-      if (Math.abs(diff) > 0.05) {
-        currentScrollRef.current += diff * 0.08;
-        setScrollY(currentScrollRef.current);
-      } else if (currentScrollRef.current !== scrollTargetRef.current) {
+      if (Math.abs(diff) > 0.01) {
+        const speed = diff < 0 ? EASING_SPEED_UP : EASING_SPEED_DOWN;
+        currentScrollRef.current += diff * speed;
+        animationFrameId = requestAnimationFrame(updateScrollPhysics);
+      } else {
         currentScrollRef.current = scrollTargetRef.current;
-        setScrollY(scrollTargetRef.current);
+        animationFrameId = null; // Mark loop as stopped
       }
-      animationFrameId = requestAnimationFrame(updateScrollPhysics);
+
+      const p = Math.min(Math.max(currentScrollRef.current / (window.innerHeight * SCROLL_TRACK_FACTOR), 0), 1);
+
+      if (containerRef.current) {
+        containerRef.current.style.setProperty("--scroll-p", p);
+      }
+
+      if (textPanelRef.current) {
+        if (window.innerWidth >= 1024) {
+          textPanelRef.current.style.opacity = Math.max(0, 1 - p * 1.5);
+          textPanelRef.current.style.pointerEvents = p > 0.6 ? "none" : "auto";
+        } else {
+          textPanelRef.current.style.opacity = "";
+          textPanelRef.current.style.pointerEvents = "";
+        }
+      }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    const handleScroll = () => {
+      scrollTargetRef.current = window.scrollY;
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(updateScrollPhysics);
+      }
+    };
+
+    // Trigger initial render setup
     animationFrameId = requestAnimationFrame(updateScrollPhysics);
 
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     const handleResize = () => {
-      setVh(window.innerHeight);
       setIsDesktop(window.innerWidth >= 1024);
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(updateScrollPhysics);
+      }
     };
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  // Calculate transition progress (0 to 1) based on scrolling through 1.2x viewport height
-  const transitionRange = vh * 1.2;
-  const p = Math.min(Math.max(scrollY / transitionRange, 0), 1);
-
-  // Desktop Interpolated styles for the morphing video card (with padding on fully expanded state)
+  // Desktop Interpolated styles for the morphing video card (using GPU-accelerated transforms)
   const desktopVideoStyle = {
     position: "absolute",
-    left: `calc((50% + 192px) * (1 - ${p}) + (50% - 461.5px) * ${p})`,
-    top: `calc((50vh + 10px) * (1 - ${p}) + (170vh - 259.5px) * ${p})`, // slides down to center on scroll
-    width: `calc(448px * (1 - ${p}) + 923px * ${p})`,
-    height: `calc(253px * (1 - ${p}) + 519px * ${p})`,
+    left: "calc(50% - 461.5px)",
+    top: `calc(${(SCROLL_TRACK_FACTOR + 0.55) * 100}vh - 259.5px)`,
+    width: "923px",
+    height: "519px",
     borderRadius: "24px",
     transition: "none", // Manual control based on scroll position
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    transform: `translate3d(calc(416px * (1 - var(--scroll-p, 0))), calc((-${(SCROLL_TRACK_FACTOR + 0.05) * 100}vh + 136.5px) * (1 - var(--scroll-p, 0))), 0) scale3d(calc(0.485 + 0.515 * var(--scroll-p, 0)), calc(0.485 + 0.515 * var(--scroll-p, 0)), 1)`,
+    transformOrigin: "center center",
+    willChange: "transform",
+    backfaceVisibility: "hidden",
+    WebkitBackfaceVisibility: "hidden",
+    isolation: "isolate",
+    WebkitMaskImage: "-webkit-radial-gradient(white, black)",
   };
 
   const desktopVideoInnerStyle = {
@@ -73,6 +101,10 @@ export default function Hero() {
     height: "100%",
     borderRadius: "24px",
     objectFit: "cover",
+    willChange: "transform",
+    backfaceVisibility: "hidden",
+    WebkitBackfaceVisibility: "hidden",
+    WebkitMaskImage: "-webkit-radial-gradient(white, black)",
   };
 
   // Mobile / Tablet fallback styles (simple scale and slide)
@@ -81,23 +113,18 @@ export default function Hero() {
     width: "100%",
     aspectRatio: "4/3",
     borderRadius: "16px",
-    transform: `scale(${1 + p * 0.05})`,
+    transform: "scale(calc(1 + var(--scroll-p, 0) * 0.05))",
     opacity: 1,
   };
-
-  // Styles for the Hero text panel (scrolls up and fades out gently)
-  const textPanelStyle = {
-    opacity: 1 - p * 1.5,
-    pointerEvents: p > 0.6 ? "none" : "auto",
-  };
-
-
 
   return (
     <div
       ref={containerRef}
       className="relative w-full bg-white text-zinc-900 overflow-hidden"
-      style={{ minHeight: isDesktop ? "240vh" : "auto" }} // Give extra scroll track only for desktop transition
+      style={{ 
+        minHeight: isDesktop ? `${(SCROLL_TRACK_FACTOR + 1.0) * 100}vh` : "auto",
+        "--scroll-p": 0
+      }} // Give extra scroll track only for desktop transition
     >
 
       {/* Scroll Area: Holds both Hero and expanded Video Showcase */}
@@ -105,21 +132,21 @@ export default function Hero() {
 
         {/* Ambient background image on load */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.85] pointer-events-none transition-opacity duration-700"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none transition-opacity duration-700"
           style={{
-            backgroundImage: `url('/hero.webp')`,
-            opacity: 0.85 * (1 - p) // Fade out background image as video becomes background
+            backgroundImage: "url('/hero.webp')",
+            opacity: "calc(0.85 * (1 - var(--scroll-p, 0)))" // Fade out background image as video becomes background
           }}
         />
 
         {/* Dynamic Glow effects */}
         <div
           className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"
-          style={{ opacity: 1 - p }}
+          style={{ opacity: "calc(1 - var(--scroll-p, 0))" }}
         />
         <div
           className="absolute bottom-10 left-10 w-96 h-96 bg-[#064ca2]/5 rounded-full blur-3xl pointer-events-none"
-          style={{ opacity: 1 - p }}
+          style={{ opacity: "calc(1 - var(--scroll-p, 0))" }}
         />
 
         {/* Maximum standard width container */}
@@ -130,8 +157,8 @@ export default function Hero() {
 
             {/* Left Section: Hero Texts (fades out on scroll) */}
             <div
+              ref={textPanelRef}
               className="lg:col-span-7 flex flex-col space-y-8 text-left pt-16 pb-6 lg:pt-24 relative"
-              style={isDesktop ? textPanelStyle : {}}
             >
               {/* Soft light shade backdrop behind text for optimal legibility */}
               <div className="absolute -inset-x-12 -inset-y-10 bg-gradient-to-r from-white/90 via-white/60 to-transparent blur-2xl z-[-1] pointer-events-none" />
@@ -259,7 +286,7 @@ export default function Hero() {
         {isDesktop && (
           <div
             style={desktopVideoStyle}
-            className="z-20 overflow-hidden border border-white/10 shadow-2xl group bg-black/40 backdrop-blur-md"
+            className="z-20 overflow-hidden border border-white/10 shadow-2xl group bg-black/90"
           >
             <div style={desktopVideoInnerStyle} className="relative overflow-hidden scale-105">
               {/* Campus Tour Looping Video */}
@@ -279,14 +306,14 @@ export default function Hero() {
             {/* Bottom labels (fades out as video expands completely) */}
             <div
               className="absolute bottom-5 left-6 flex items-center gap-3 transition-opacity duration-300"
-              style={{ opacity: 1 - p * 3 }}
+              style={{ opacity: "calc(1 - var(--scroll-p, 0) * 3)" }}
             >
-              <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+              <div className="w-8 h-8 rounded-full bg-white/30 flex items-center justify-center border border-white/30">
                 <svg className="w-3.5 h-3.5 text-white fill-current" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
-              <span className="text-white text-xs font-bold uppercase tracking-widest bg-black/10 backdrop-blur-xs px-3 py-1.5 rounded-md border border-white/10">
+              <span className="text-white text-xs font-bold uppercase tracking-widest bg-black/60 px-3 py-1.5 rounded-md border border-white/10">
                 Explore Our Campus
               </span>
             </div>
