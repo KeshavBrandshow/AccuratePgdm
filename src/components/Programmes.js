@@ -24,6 +24,17 @@ const specializationsData = [
     training: "Live FinTech Simulations",
   },
   {
+    id: "banking",
+    category: "Finance & Tech",
+    title: "PGDM in Banking & Financial Services",
+    description: "Covers banking operations, financial systems, wealth management, commercial lending, risk assessment, and fintech platforms.",
+    image: "/programs/mba.webp",
+    format: "On Campus (Full-time)",
+    eligibility: "Graduation (Min 50%) + Entrance",
+    duration: "2 Years (Including Internship)",
+    training: "Finacle & Core Banking Labs",
+  },
+  {
     id: "hr",
     category: "Core Business",
     title: "PGDM in Human Resource Management",
@@ -35,15 +46,15 @@ const specializationsData = [
     training: "SHRM Aligned Projects",
   },
   {
-    id: "it",
+    id: "analytics",
     category: "Finance & Tech",
-    title: "PGDM in Information Technology & Analytics",
-    description: "Blends management with cutting-edge tech skills including big data analytics, AI in business, and product management.",
+    title: "PGDM in Business Analytics",
+    description: "Equips students with data driven tools, predictive modeling, statistical analysis, database management, and business intelligence (BI) software.",
     image: "/programs/four.webp",
     format: "On Campus (Full-time)",
     eligibility: "Graduation (Min 50%) + Entrance",
     duration: "2 Years (Including Internship)",
-    training: "Big Data & Analytics Labs",
+    training: "Advanced Excel, Python & Tableau Labs",
   },
   {
     id: "ib",
@@ -154,7 +165,7 @@ export default function Programmes() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 tracking-tight flex items-baseline gap-x-2">
-              Our <span className="font-serif italic font-normal text-[#064ca2]">Specialization</span>
+              Our <span className="font-serif italic font-bold text-[#064ca2]">Specialization</span>
             </h2>
             <p className="text-zinc-500 mt-2 text-sm font-medium">
               Choose a specialization that aligns with your professional aspiration.
@@ -221,13 +232,13 @@ export default function Programmes() {
                 />
 
                 {/* Visual Glassmorphic play button */}
-                <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
+                {/* <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
                   <div className="w-12 h-12 rounded-full bg-white/25 backdrop-blur-md flex items-center justify-center border border-white/40 shadow-lg group-hover:scale-110 group-hover:bg-white/45 transition duration-300">
                     <svg className="w-3.5 h-3.5 text-white fill-current translate-x-0.5" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Badge Category */}
                 <span className="absolute top-4 left-4 bg-white/80 backdrop-blur-xs text-zinc-800 text-[10px] font-black tracking-widest uppercase px-3 py-1 rounded-md border border-white/20">
@@ -238,7 +249,7 @@ export default function Programmes() {
               {/* Card Body */}
               <div className="p-6 flex-1 flex flex-col justify-between space-y-6">
                 <div>
-                  <h3 className="text-xl font-extrabold text-zinc-900 tracking-tight leading-snug">
+                  <h3 className="text-xl font-extrabold text-[#064ca2] tracking-tight leading-snug">
                     {spec.title}
                   </h3>
                   <p className="text-zinc-500 text-xs mt-2 leading-relaxed">

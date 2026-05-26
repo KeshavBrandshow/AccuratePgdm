@@ -7,6 +7,7 @@ const EASING_SPEED_UP = 0.12;      // Easing speed when scrolling back up (large
 
 export default function Hero() {
   const [isDesktop, setIsDesktop] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
   const containerRef = useRef(null);
   const textPanelRef = useRef(null);
   const scrollTargetRef = useRef(0);
@@ -117,6 +118,20 @@ export default function Hero() {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
+
+  useEffect(() => {
+    if (videoOpen) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") setVideoOpen(false);
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [videoOpen]);
 
   // Desktop Interpolated styles for the morphing video card (using GPU-accelerated transforms)
   const desktopVideoStyle = {
@@ -251,7 +266,10 @@ export default function Hero() {
 
               {/* Action Buttons Section */}
               <div className="flex flex-wrap items-center gap-4 pt-6">
-                <button className="h-14 px-8 bg-zinc-900 hover:bg-zinc-800 text-white font-bold rounded-full flex items-center gap-3 shadow-md hover:shadow-lg transition duration-300 group cursor-pointer">
+                <button
+                  onClick={() => setVideoOpen(true)}
+                  className="h-14 px-8 bg-zinc-900 hover:bg-zinc-800 text-white font-bold rounded-full flex items-center gap-3 shadow-md hover:shadow-lg transition duration-300 group cursor-pointer"
+                >
                   <span>Watch Intro Video</span>
                   <span className="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                     <svg className="w-2.5 h-2.5 text-white fill-current" viewBox="0 0 24 24">
@@ -377,6 +395,57 @@ export default function Hero() {
         )}
 
       </div>
+
+      {/* Video Modal Popup */}
+      {videoOpen && (
+        <div
+          className="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] flex items-center justify-center p-4 sm:p-6 md:p-8 cursor-pointer animate-fadeIn"
+          onClick={() => setVideoOpen(false)}
+        >
+          <style>{`
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+            @keyframes scaleIn {
+              from { transform: scale(0.95); opacity: 0; }
+              to { transform: scale(1); opacity: 1; }
+            }
+            .animate-fadeIn {
+              animation: fadeIn 0.2s ease-out forwards;
+            }
+            .animate-scaleIn {
+              animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            }
+          `}</style>
+
+          {/* Close Button on Top Right */}
+          <button
+            className="fixed top-6 right-6 w-12 h-12 rounded-full bg-white/15 hover:bg-white/25 text-white border border-white/20 flex items-center justify-center cursor-pointer transition duration-300 hover:scale-105 z-[110]"
+            onClick={() => setVideoOpen(false)}
+            aria-label="Close video"
+          >
+            <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Video Container Card */}
+          <div
+            className="relative w-full max-w-5xl aspect-video rounded-2xl md:rounded-3xl overflow-hidden bg-black border border-white/10 shadow-2xl cursor-default animate-scaleIn"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              className="w-full h-full object-cover"
+              src="/vedio/accurate-video.mp4"
+              controls
+              autoPlay
+              playsInline
+            />
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

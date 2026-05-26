@@ -35,7 +35,7 @@ const cardsData = [
     targetSub: "Industry Leaders",
     stat1Label: "Live Case Studies",
     stat1Val: "50+ Cases",
-    stat2Label: "Top Recruiter Visits",
+    stat2Label: "Top Recruiter",
     stat2Val: "350+ Brands",
     buttonText: "Download Corporate Project Handbook",
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800",
@@ -139,7 +139,7 @@ export default function PracticalLearning() {
         {/* Section Title */}
         <div className="mb-20 text-center lg:text-left">
           <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 tracking-tight leading-tight max-w-2xl">
-            Learn <span className="font-serif italic font-normal text-[#e6a600]">
+            Learn <span className="font-serif italic font-bold text-[#e6a600]">
               'Practically'
             </span> by Building Real Businesses
           </h2>
@@ -153,7 +153,7 @@ export default function PracticalLearning() {
           {cardsData.map((card) => (
             <div
               key={card.id}
-              className="bg-white border border-zinc-200 rounded-[32px] p-6 md:p-8 lg:p-12 shadow-md hover:shadow-xl transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center sticky top-28"
+              className="bg-white border border-zinc-200 rounded-[28px] sm:rounded-[32px] p-4 sm:p-6 md:p-8 lg:p-12 shadow-md hover:shadow-xl transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-12 items-center lg:sticky lg:top-28 relative"
               style={{ zIndex: card.id * 10 }}
             >
 
@@ -193,7 +193,7 @@ export default function PracticalLearning() {
               </div>
 
               {/* Right Column: Context & Stats */}
-              <div className="lg:col-span-6 space-y-8 text-left">
+              <div className="lg:col-span-6 space-y-5 lg:space-y-8 text-left">
 
                 {/* Pill Badge */}
                 <div className="inline-block">
@@ -203,7 +203,7 @@ export default function PracticalLearning() {
                 </div>
 
                 {/* Title */}
-                <div className="space-y-4">
+                <div className="space-y-2 lg:space-y-4">
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 tracking-tight leading-snug">
                     {(() => {
                       const title = card.title;
@@ -213,7 +213,7 @@ export default function PracticalLearning() {
                       return (
                         <>
                           {parts[0]}
-                          <span className={`font-serif italic font-normal ${card.highlightColor}`}>
+                          <span className={`font-serif italic font-bold ${card.highlightColor}`}>
                             {highlight}
                           </span>
                           {parts[1]}
@@ -227,13 +227,13 @@ export default function PracticalLearning() {
                 </div>
 
                 {/* Mini Stats Boxes */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
 
                   {/* Stat 1 */}
-                  <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl p-5 flex flex-col justify-between h-36">
+                  <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between h-28 lg:h-36">
                     <div>
                       <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider block">{card.stat1Label}</span>
-                      <span className="text-2xl font-black text-zinc-900 mt-1 block">{card.stat1Val}</span>
+                      <span className="text-xl sm:text-2xl font-black text-zinc-900 mt-1 block">{card.stat1Val}</span>
                     </div>
 
                     {/* SVG rising trend graph */}
@@ -262,25 +262,27 @@ export default function PracticalLearning() {
                   </div>
 
                   {/* Stat 2 */}
-                  <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl p-5 flex flex-col justify-between h-36">
+                  <div className="bg-zinc-50 border border-zinc-200/80 rounded-2xl p-3.5 sm:p-5 flex flex-col justify-between h-28 lg:h-36">
                     <div>
                       <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider block">{card.stat2Label}</span>
-                      <span className="text-2xl font-black text-zinc-900 mt-1 block">{card.stat2Val}</span>
+                      <span className="text-xl sm:text-2xl font-black text-zinc-900 mt-1 block">{card.stat2Val}</span>
                     </div>
 
                     {/* Visual stack indicator */}
-                    <div className="flex items-center gap-1 mt-2">
-                      <div className="flex -space-x-2 overflow-hidden">
+                    <div className="flex items-center gap-1 sm:gap-1.5 mt-2">
+                      <div className="flex -space-x-1.5 sm:-space-x-2 overflow-hidden shrink-0">
                         {avatars.map((img, i) => (
                           <img
                             key={i}
-                            className="inline-block h-7 w-7 rounded-full ring-2 ring-zinc-50 object-cover"
+                            className={`inline-block h-5 w-5 sm:h-7 sm:w-7 rounded-full ring-1.5 ring-zinc-50 object-cover ${
+                              i === 3 ? "hidden sm:inline-block" : ""
+                            }`}
                             src={img}
                             alt="Student avatar"
                           />
                         ))}
                       </div>
-                      <span className="text-[10px] font-extrabold text-zinc-500 ml-2">Active Scholars</span>
+                      <span className="text-[9px] sm:text-[10px] font-extrabold text-zinc-500 whitespace-nowrap">Active Scholars</span>
                     </div>
                   </div>
 

@@ -20,7 +20,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Why Accurate", href: "#why-accurate-section" },
-    { name: "Programmes", href: "#programmes-section" },
+    { name: "Specialization", href: "#programmes - section" },
     { name: "Practical Learning", href: "#practical-learning-section" },
     { name: "Ecosystem", href: "#ecosystem-section" },
     { name: "Student Life", href: "#student-life-section" },

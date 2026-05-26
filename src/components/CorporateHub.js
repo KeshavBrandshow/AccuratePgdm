@@ -91,8 +91,7 @@ export default function CorporateHub() {
           <span className="text-zinc-400 text-xs font-black uppercase tracking-widest block mb-2">CAMPUS & ECOSYSTEM</span>
           <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 tracking-tight leading-tight">
             Learn at One of India's<br />
-            <span className="font-serif italic text-cyan-600 font-normal">Biggest</span>{" "}
-            <span className="text-[#064ca2]">Corporate Hubs</span>
+            <span className="font-serif italic font-extrabold text-[#064ca2]">Biggest Corporate Hubs</span>
           </h2>
         </div>
 
@@ -258,7 +257,7 @@ export default function CorporateHub() {
                     <span className="text-[10px] font-black tracking-widest text-[#064ca2] uppercase">THRIVE AMIDST FORTUNE</span>
                     <h3 className="text-3xl font-extrabold text-zinc-900 tracking-tight leading-tight">
                       500 Companies at<br />
-                      <span className="font-serif italic text-cyan-600 font-normal">DLF CyberPark</span>
+                      <span className="font-serif italic text-[#064ca2] font-bold">DLF CyberPark</span>
                     </h3>
                   </div>
                   <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">

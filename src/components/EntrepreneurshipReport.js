@@ -166,8 +166,8 @@ export default function EntrepreneurshipReport() {
 
         {/* Top Part Content (Headers) */}
         <div className="space-y-5 pb-10">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 tracking-tight leading-tight max-w-3xl mx-auto">
-            Building Real Startups, <span className="font-serif italic font-normal text-zinc-800">Not Just Projects</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 tracking-tight leading-[0.9] max-w-3xl mx-auto">
+            Building Real Startups, <span className="font-serif italic font-bold text-[#064ca2]">Not Just Projects</span>
           </h2>
           <p className="text-zinc-500 text-sm md:text-base font-medium max-w-xl mx-auto">
             A data-backed report on student startups, covering valuation, revenue, funding, and market traction.
