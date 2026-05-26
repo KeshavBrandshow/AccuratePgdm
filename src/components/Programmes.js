@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import Link from "next/link";
 
 const specializationsData = [
   {
@@ -309,12 +310,15 @@ export default function Programmes() {
                 </div>
 
                 {/* Explore CTA Button */}
-                <button className="w-full py-3.5 border border-[#064ca2] text-[#064ca2] font-extrabold text-xs rounded-xl hover:bg-[#064ca2] hover:text-white transition duration-300 flex items-center justify-center gap-2 group cursor-pointer">
+                <Link
+                  href={`/specializations/${spec.id}`}
+                  className="w-full py-3.5 border border-[#064ca2] text-[#064ca2] font-extrabold text-xs rounded-xl hover:bg-[#064ca2] hover:text-white transition duration-300 flex items-center justify-center gap-2 group cursor-pointer text-center no-underline"
+                >
                   <span>Explore Specialization</span>
                   <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
-                </button>
+                </Link>
 
               </div>
             </div>
