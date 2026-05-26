@@ -4,26 +4,30 @@ export default function StudentLife() {
   const [isTourOpen, setIsTourOpen] = useState(false);
 
   return (
-    <section id="student-life-section" className="w-full bg-white py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden border-t border-zinc-200">
+    <section id="student-life-section" className="w-full bg-white py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden border-t border-zinc-200"
+      style={{
+        // height: "520px",
+        backgroundImage:
+          "linear-gradient(to right, rgba(6,76,162,0.10) 1px, transparent 1px), linear-gradient(to bottom, rgba(6,76,162,0.10) 1px, transparent 1px)",
+        backgroundSize: "40px 40px",
+      }}>
       {/* Subtle Background Glow */}
       <div className="absolute top-1/2 left-1/3 w-[600px] h-[600px] bg-blue-100/30 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Background Campus Circles SVG */}
       {/* Decorative geometric accent - right */}
-      <img
+      {/* <img
         src="/svgs/deco-right.svg"
         alt=""
-        className="absolute top-8 left-4 w-36 h-36 md:w-52 md:h-52 opacity-100 pointer-events-none select-none z-10 animate-slow-spin"
+        className="absolute top-8 right-4 w-36 h-36 md:w-52 md:h-52 opacity-100 pointer-events-none select-none z-10 animate-slow-spin"
       />
 
-      {/* Decorative dot-grid accent - left */}
-      {/* <img
+      <img
         src="/svgs/deco-left.svg"
         alt=""
         className="absolute top-8 left-4 w-36 h-36 md:w-52 md:h-52 opacity-100 pointer-events-none select-none z-10"
-      /> */}
+      />
 
-      {/* Tailwind CSS Flip Keyframes & Animations inside style tag */}
       <style jsx global>{`
 
         @keyframes slowSpin {
@@ -76,7 +80,7 @@ export default function StudentLife() {
         .animate-flip-right {
           animation: flipRight 0.5s forwards ease-in-out;
         }
-      `}</style>
+      `}</style> */}
 
       <div className="max-w-7xl mx-auto relative z-10">
 

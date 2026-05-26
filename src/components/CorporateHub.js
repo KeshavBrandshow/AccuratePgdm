@@ -15,19 +15,74 @@ export default function CorporateHub() {
       {/* Subtle Light Gradient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-100/40 rounded-full blur-[160px] pointer-events-none" />
 
-      {/* Decorative network nodes - top right */}
       <img
-        src="/svgs/deco-network.svg"
+        src="/svgs/deco-right.svg"
         alt=""
-        className="absolute top-8 right-8 w-48 h-48 md:w-60 md:h-60 opacity-100 pointer-events-none select-none z-0 animate-float"
+        className="absolute top-8 right-4 w-36 h-36 md:w-52 md:h-52 opacity-100 pointer-events-none select-none z-10 animate-slow-spin"
       />
 
-      {/* Decorative hex grid - bottom left */}
+      {/* Decorative dot-grid accent - left */}
       {/* <img
-        src="/svgs/deco-hexgrid.svg"
+        src="/svgs/deco-left.svg"
         alt=""
-        className="absolute bottom-8 left-8 w-44 h-44 md:w-56 md:h-56 opacity-100 pointer-events-none select-none z-0 animate-float"
+        className="absolute top-8 left-4 w-36 h-36 md:w-52 md:h-52 opacity-100 pointer-events-none select-none z-10"
       /> */}
+
+      {/* Tailwind CSS Flip Keyframes & Animations inside style tag */}
+      <style jsx global>{`
+
+        @keyframes slowSpin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .animate-slow-spin {
+          animation: slowSpin 20s linear infinite;
+        }
+
+        @keyframes flipLeft {
+          0% {
+            transform: rotateY(0deg) scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: rotateY(-90deg) scale(0.98);
+            opacity: 0.5;
+          }
+          100% {
+            transform: rotateY(-180deg) scale(0.95);
+            opacity: 0;
+          }
+        }
+
+        @keyframes flipRight {
+          0% {
+            transform: rotateY(-180deg) scale(0.95);
+            opacity: 0;
+          }
+          50% {
+            transform: rotateY(-90deg) scale(0.98);
+            opacity: 0.5;
+          }
+          100% {
+            transform: rotateY(0deg) scale(1);
+            opacity: 1;
+          }
+        }
+
+        .animate-flip-left {
+          animation: flipLeft 0.5s forwards ease-in-out;
+        }
+
+        .animate-flip-right {
+          animation: flipRight 0.5s forwards ease-in-out;
+        }
+      `}</style>
+
 
       <div className="max-w-7xl mx-auto relative z-10">
 

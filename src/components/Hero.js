@@ -12,11 +12,25 @@ export default function Hero() {
   const scrollTargetRef = useRef(0);
   const currentScrollRef = useRef(0);
 
+  // Optimized animation references
+  const bgRef = useRef(null);
+  const glow1Ref = useRef(null);
+  const glow2Ref = useRef(null);
+  const videoCardRef = useRef(null);
+  const videoLabelRef = useRef(null);
+  const mobileVideoRef = useRef(null);
+
+  // Viewport dimensions cache to prevent Layout Thrashing (Forced Reflow)
+  const vhRef = useRef(0);
+  const vwRef = useRef(0);
+
   useEffect(() => {
-    // Set initial scroll coordinates on mount
+    // Initial dimensions cache on mount
+    vhRef.current = window.innerHeight;
+    vwRef.current = window.innerWidth;
     scrollTargetRef.current = window.scrollY;
     currentScrollRef.current = window.scrollY;
-    setIsDesktop(window.innerWidth >= 1024);
+    setIsDesktop(vwRef.current >= 1024);
 
     let animationFrameId = null;
     const updateScrollPhysics = () => {
@@ -31,19 +45,46 @@ export default function Hero() {
         animationFrameId = null; // Mark loop as stopped
       }
 
-      const p = Math.min(Math.max(currentScrollRef.current / (window.innerHeight * SCROLL_TRACK_FACTOR), 0), 1);
+      const p = Math.min(Math.max(currentScrollRef.current / (vhRef.current * SCROLL_TRACK_FACTOR), 0), 1);
 
-      if (containerRef.current) {
-        containerRef.current.style.setProperty("--scroll-p", p);
-      }
-
+      // Direct DOM manipulation for maximum smoothness (bypasses layout invalidation)
       if (textPanelRef.current) {
-        if (window.innerWidth >= 1024) {
+        if (vwRef.current >= 1024) {
           textPanelRef.current.style.opacity = Math.max(0, 1 - p * 1.5);
           textPanelRef.current.style.pointerEvents = p > 0.6 ? "none" : "auto";
         } else {
           textPanelRef.current.style.opacity = "";
           textPanelRef.current.style.pointerEvents = "";
+        }
+      }
+
+      // Background Opacity
+      if (bgRef.current) {
+        bgRef.current.style.opacity = 0.85 * (1 - p);
+      }
+
+      // Glow Opacities
+      if (glow1Ref.current) {
+        glow1Ref.current.style.opacity = 1 - p;
+      }
+      if (glow2Ref.current) {
+        glow2Ref.current.style.opacity = 1 - p;
+      }
+
+      // Video transforms depending on viewport size
+      if (vwRef.current >= 1024) {
+        if (videoCardRef.current) {
+          const tx = 416 * (1 - p);
+          const ty = (-(SCROLL_TRACK_FACTOR + 0.05) * vhRef.current + 136.5) * (1 - p);
+          const scale = 0.485 + 0.515 * p;
+          videoCardRef.current.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale3d(${scale}, ${scale}, 1)`;
+        }
+        if (videoLabelRef.current) {
+          videoLabelRef.current.style.opacity = Math.max(0, 1 - p * 3);
+        }
+      } else {
+        if (mobileVideoRef.current) {
+          mobileVideoRef.current.style.transform = `scale(${1 + p * 0.05})`;
         }
       }
     };
@@ -61,7 +102,9 @@ export default function Hero() {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 1024);
+      vhRef.current = window.innerHeight;
+      vwRef.current = window.innerWidth;
+      setIsDesktop(vwRef.current >= 1024);
       if (!animationFrameId) {
         animationFrameId = requestAnimationFrame(updateScrollPhysics);
       }
@@ -87,7 +130,7 @@ export default function Hero() {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    transform: `translate3d(calc(416px * (1 - var(--scroll-p, 0))), calc((-${(SCROLL_TRACK_FACTOR + 0.05) * 100}vh + 136.5px) * (1 - var(--scroll-p, 0))), 0) scale3d(calc(0.485 + 0.515 * var(--scroll-p, 0)), calc(0.485 + 0.515 * var(--scroll-p, 0)), 1)`,
+    transform: `translate3d(416px, calc(-${(SCROLL_TRACK_FACTOR + 0.05) * 100}vh + 136.5px), 0) scale3d(0.485, 0.485, 1)`, // Initial state for p = 0
     transformOrigin: "center center",
     willChange: "transform",
     backfaceVisibility: "hidden",
@@ -113,7 +156,7 @@ export default function Hero() {
     width: "100%",
     aspectRatio: "4/3",
     borderRadius: "16px",
-    transform: "scale(calc(1 + var(--scroll-p, 0) * 0.05))",
+    transform: "scale(1)", // Initial state
     opacity: 1,
   };
 
@@ -123,7 +166,6 @@ export default function Hero() {
       className="relative w-full bg-white text-zinc-900 overflow-hidden"
       style={{
         minHeight: isDesktop ? `${(SCROLL_TRACK_FACTOR + 1.0) * 100}vh` : "auto",
-        "--scroll-p": 0
       }} // Give extra scroll track only for desktop transition
     >
 
@@ -132,21 +174,25 @@ export default function Hero() {
 
         {/* Ambient background image on load */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none transition-opacity duration-700"
+          ref={bgRef}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
           style={{
             backgroundImage: "url('/hero.webp')",
-            opacity: "calc(0.85 * (1 - var(--scroll-p, 0)))" // Fade out background image as video becomes background
+            opacity: 0.85,
+            willChange: "opacity"
           }}
         />
 
         {/* Dynamic Glow effects */}
         <div
+          ref={glow1Ref}
           className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"
-          style={{ opacity: "calc(1 - var(--scroll-p, 0))" }}
+          style={{ opacity: 1, willChange: "opacity" }}
         />
         <div
+          ref={glow2Ref}
           className="absolute bottom-10 left-10 w-96 h-96 bg-[#064ca2]/5 rounded-full blur-3xl pointer-events-none"
-          style={{ opacity: "calc(1 - var(--scroll-p, 0))" }}
+          style={{ opacity: 1, willChange: "opacity" }}
         />
 
         {/* Maximum standard width container */}
@@ -159,6 +205,7 @@ export default function Hero() {
             <div
               ref={textPanelRef}
               className="lg:col-span-7 flex flex-col space-y-8 text-left pt-16 pb-6 lg:pt-24 relative"
+              style={{ willChange: "opacity" }}
             >
               {/* Soft light shade backdrop behind text for optimal legibility */}
               <div className="absolute -inset-x-12 -inset-y-10 bg-gradient-to-r from-white/90 via-white/60 to-transparent blur-2xl z-[-1] pointer-events-none" />
@@ -260,7 +307,11 @@ export default function Hero() {
             ) : (
               // Mobile view embeds the video directly inline
               <div className="w-full flex justify-center py-6">
-                <div style={mobileVideoStyle} className="overflow-hidden border border-white/10 shadow-2xl">
+                <div 
+                  ref={mobileVideoRef}
+                  style={mobileVideoStyle} 
+                  className="overflow-hidden border border-white/10 shadow-2xl"
+                >
                   <video
                     className="w-full h-full object-cover"
                     src="/vedio/accurate-video.mp4"
@@ -285,6 +336,7 @@ export default function Hero() {
         {/* Absolute Floating Video Card (Strictly Desktop Morphing overlay) */}
         {isDesktop && (
           <div
+            ref={videoCardRef}
             style={desktopVideoStyle}
             className="z-20 overflow-hidden border border-white/10 shadow-2xl group bg-black/90"
           >
@@ -305,8 +357,9 @@ export default function Hero() {
 
             {/* Bottom labels (fades out as video expands completely) */}
             <div
-              className="absolute bottom-5 left-6 flex items-center gap-3 transition-opacity duration-300"
-              style={{ opacity: "calc(1 - var(--scroll-p, 0) * 3)" }}
+              ref={videoLabelRef}
+              className="absolute bottom-5 left-6 flex items-center gap-3"
+              style={{ opacity: 1, willChange: "opacity" }}
             >
               <div className="w-8 h-8 rounded-full bg-white/30 flex items-center justify-center border border-white/30">
                 <svg className="w-3.5 h-3.5 text-white fill-current" viewBox="0 0 24 24">
