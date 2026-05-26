@@ -1,6 +1,6 @@
 export default function WhyAccurate() {
   return (
-    <section id="why-accurate-section" className="w-full bg-zinc-50 py-12 lg:py-16 px-4 sm:px-6 lg:px-8 relative border-t border-zinc-200 lg:h-screen lg:max-h-screen flex flex-col justify-center overflow-hidden">
+    <section id="why-accurate-section" className="w-full bg-zinc-50 py-12 lg:py-20 px-4 sm:px-6 lg:px-8 relative border-t border-zinc-200 lg:min-h-screen flex flex-col justify-center overflow-hidden">
 
       {/* Background Accent Glows */}
       <div className="absolute top-10 left-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />

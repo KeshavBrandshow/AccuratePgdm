@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 // Configuration variables for managing scroll animation speed and smoothness
 const SCROLL_TRACK_FACTOR = 0.7; // How much you need to scroll to finish the animation (e.g. 0.7x viewport height. Smaller = faster animation)
-const EASING_SPEED_DOWN = 0.05;    // Easing speed when scrolling down (smaller = smoother, floaty feel)
+const EASING_SPEED_DOWN = 0.08;    // Easing speed when scrolling down (smaller = smoother, floaty feel)
 const EASING_SPEED_UP = 0.12;      // Easing speed when scrolling back up (larger = snaps back quickly, more responsive)
 
 export default function Hero() {
@@ -59,9 +59,10 @@ export default function Hero() {
         }
       }
 
-      // Background Opacity
+      // Background Opacity & Zoom
       if (bgRef.current) {
         bgRef.current.style.opacity = 0.85 * (1 - p);
+        bgRef.current.style.transform = `scale3d(${1 + p * 0.08}, ${1 + p * 0.08}, 1)`;
       }
 
       // Glow Opacities
@@ -76,7 +77,10 @@ export default function Hero() {
       if (vwRef.current >= 1024) {
         if (videoCardRef.current) {
           const tx = 416 * (1 - p);
-          const ty = (-(SCROLL_TRACK_FACTOR + 0.05) * vhRef.current + 136.5) * (1 - p);
+          const ty_base = (-(SCROLL_TRACK_FACTOR + 0.05) * vhRef.current + 136.5) * (1 - p);
+          const scrollLag = scrollTargetRef.current - currentScrollRef.current;
+          // Compensate for scroll lag during transition, but fade it out as p approaches 1 so it scrolls away naturally
+          const ty = ty_base + scrollLag * (1 - p);
           const scale = 0.485 + 0.515 * p;
           videoCardRef.current.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale3d(${scale}, ${scale}, 1)`;
         }
@@ -192,9 +196,9 @@ export default function Hero() {
           ref={bgRef}
           className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
           style={{
-            backgroundImage: "url('/hero.webp')",
+            backgroundImage: "url('/hero.png')",
             opacity: 0.85,
-            willChange: "opacity"
+            willChange: "opacity, transform"
           }}
         />
 
@@ -325,9 +329,9 @@ export default function Hero() {
             ) : (
               // Mobile view embeds the video directly inline
               <div className="w-full flex justify-center py-6">
-                <div 
+                <div
                   ref={mobileVideoRef}
-                  style={mobileVideoStyle} 
+                  style={mobileVideoStyle}
                   className="overflow-hidden border border-white/10 shadow-2xl"
                 >
                   <video
