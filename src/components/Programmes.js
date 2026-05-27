@@ -11,7 +11,7 @@ const specializationsData = [
     format: "On Campus (Full-time)",
     eligibility: "Graduation (Min 50%) + Entrance",
     duration: "2 Years (Including Internship)",
-    training: "3-Month Capstone Project",
+    training: "2-Month Summer Internship (SIP)",
   },
   {
     id: "finance",
@@ -22,7 +22,7 @@ const specializationsData = [
     format: "On Campus (Full-time)",
     eligibility: "Graduation (Min 50%) + Entrance",
     duration: "2 Years (Including Internship)",
-    training: "Live FinTech Simulations",
+    training: "Financial Modeling & Valuation",
   },
   {
     id: "banking",
@@ -44,7 +44,7 @@ const specializationsData = [
     format: "On Campus (Full-time)",
     eligibility: "Graduation (Min 50%) + Entrance",
     duration: "2 Years (Including Internship)",
-    training: "SHRM Aligned Projects",
+    training: "HR Analytics & Talent Sourcing",
   },
   {
     id: "analytics",
@@ -55,7 +55,7 @@ const specializationsData = [
     format: "On Campus (Full-time)",
     eligibility: "Graduation (Min 50%) + Entrance",
     duration: "2 Years (Including Internship)",
-    training: "Advanced Excel, Python & Tableau Labs",
+    training: "Excel, Python & Tableau Labs",
   },
   {
     id: "ib",
@@ -66,7 +66,7 @@ const specializationsData = [
     format: "On Campus (Full-time)",
     eligibility: "Graduation (Min 50%) + Entrance",
     duration: "2 Years (Including Internship)",
-    training: "Global Port & Logistics Visit",
+    training: "Export-Import & Port Logistics Tour",
   },
   {
     id: "ops",

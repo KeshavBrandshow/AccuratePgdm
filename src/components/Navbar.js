@@ -135,7 +135,7 @@ export default function Navbar() {
             <div className="hidden md:flex items-center gap-8">
               {/* Why Accurate */}
               <Link
-                href="/#why-accurate-section"
+                href="/why-accurate"
                 onClick={() => setDesktopSpecsOpen(false)}
                 className={`text-xs sm:text-sm font-bold transition duration-200 relative group py-1 ${scrolled ? "text-white/80 hover:text-white" : "text-[#064ca2]/80 hover:text-[#064ca2]"
                   }`}
@@ -231,7 +231,7 @@ export default function Navbar() {
 
               {/* Ecosystem */}
               <Link
-                href="/#ecosystem-section"
+                href="/ecosystem"
                 onClick={() => setDesktopSpecsOpen(false)}
                 className={`text-xs sm:text-sm font-bold transition duration-200 relative group py-1 ${scrolled ? "text-white/80 hover:text-white" : "text-[#064ca2]/80 hover:text-[#064ca2]"
                   }`}
@@ -243,7 +243,7 @@ export default function Navbar() {
 
               {/* Student Life */}
               <Link
-                href="/#student-life-section"
+                href="/student-life"
                 onClick={() => setDesktopSpecsOpen(false)}
                 className={`text-xs sm:text-sm font-bold transition duration-200 relative group py-1 ${scrolled ? "text-white/80 hover:text-white" : "text-[#064ca2]/80 hover:text-[#064ca2]"
                   }`}
@@ -297,7 +297,7 @@ export default function Navbar() {
             <div className="px-4 pt-4 pb-6 space-y-3 flex flex-col text-left">
               {/* Why Accurate */}
               <Link
-                href="/#why-accurate-section"
+                href="/why-accurate"
                 onClick={toggleMobileMenu}
                 className="text-sm font-bold text-white/90 hover:text-white py-2 border-b border-white/5"
               >
@@ -353,7 +353,7 @@ export default function Navbar() {
 
               {/* Ecosystem */}
               <Link
-                href="/#ecosystem-section"
+                href="/ecosystem"
                 onClick={toggleMobileMenu}
                 className="text-sm font-bold text-white/90 hover:text-white py-2 border-b border-white/5"
               >
@@ -362,7 +362,7 @@ export default function Navbar() {
 
               {/* Student Life */}
               <Link
-                href="/#student-life-section"
+                href="/student-life"
                 onClick={toggleMobileMenu}
                 className="text-sm font-bold text-white/90 hover:text-white py-2 border-b border-white/5"
               >

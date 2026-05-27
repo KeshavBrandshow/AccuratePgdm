@@ -254,14 +254,14 @@ export default function CorporateHub() {
               {activeTab === "careers" && (
                 <>
                   <div className="space-y-3">
-                    <span className="text-[10px] font-black tracking-widest text-[#064ca2] uppercase">THRIVE AMIDST FORTUNE</span>
+                    <span className="text-[10px] font-black tracking-widest text-[#064ca2] uppercase">ASIA'S LARGEST EDUCATION HUB</span>
                     <h3 className="text-3xl font-extrabold text-zinc-900 tracking-tight leading-tight">
-                      500 Companies at<br />
-                      <span className="font-serif italic text-[#064ca2] font-bold">DLF CyberPark</span>
+                      Knowledge Park III<br />
+                      <span className="font-serif italic text-[#064ca2] font-bold">Greater Noida</span>
                     </h3>
                   </div>
                   <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
-                    Located in a vibrant business district with top recruiters such as BCG, EY, Gartner just an elevator ride away. Accurate boasts of a unique locale.
+                    Situated in the heart of Delhi NCR's premium educational and corporate hub, adjacent to the Noida Expressway corridor with companies like HCL, Wipro, and LG nearby.
                   </p>
                 </>
               )}
@@ -303,7 +303,7 @@ export default function CorporateHub() {
                 {activeTab === "careers" && (
                   <img
                     src="/programs/pgdm.webp"
-                    alt="DLF Cyberpark"
+                    alt="Knowledge Park Campus"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 )}
@@ -325,7 +325,7 @@ export default function CorporateHub() {
                 <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm border border-zinc-200/80 rounded-xl p-3 text-left shadow-sm">
                   <span className="text-[8px] font-black text-[#064ca2] uppercase tracking-wider block">ACCURATE ADVANTAGE</span>
                   <span className="text-[11px] font-bold text-zinc-900 block mt-0.5 leading-snug">
-                    {activeTab === "careers" && "DLF CyberPark Campus Building"}
+                    {activeTab === "careers" && "Knowledge Park Campus Building"}
                     {activeTab === "leadership" && "Corporate Council & Industry Board"}
                     {activeTab === "news" && "Academic Leadership Highlights"}
                   </span>

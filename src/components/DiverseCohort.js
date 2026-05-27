@@ -3,47 +3,47 @@ import { useState, useEffect } from "react";
 const guestsData = [
   {
     id: 1,
-    name: "Nithin Kamath",
-    title: "Founder, Zerodha",
-    convocation: "1st Convocation",
+    name: "Prof. R.S. Nirjar",
+    title: "Ex-Chairman, AICTE",
+    convocation: "Convocation Chief Guest",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600",
-    quote: "Building sustainable, bootstrapped businesses for the long term.",
+    quote: "Empowering management institutions to achieve high academic excellence.",
     tagColor: "from-cyan-500 to-blue-500"
   },
   {
     id: 2,
-    name: "Sanjeev Bikhchandani",
-    title: "Founder, Info Edge",
-    convocation: "2nd Convocation",
+    name: "Sanjay Khaturia",
+    title: "Channel Leader, IBM India",
+    convocation: "Guest of Honor",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600",
-    quote: "Focusing on customer needs is the ultimate strategy for success.",
+    quote: "Digital transformation and industry-aligned skills are key for future leaders.",
     tagColor: "from-emerald-500 to-teal-500"
   },
   {
     id: 3,
-    name: "Peyush Bansal",
-    title: "Founder, Lenskart",
-    convocation: "3rd Convocation",
+    name: "Dr. Sandeep Marwah",
+    title: "Founder, Noida Film City",
+    convocation: "Distinguished Speaker",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600",
-    quote: "Revolutionizing retail with technology and customer obsession.",
+    quote: "Creativity and innovation should be integrated into modern business pedagogy.",
     tagColor: "from-[#e6a600] to-amber-600"
   },
   {
     id: 4,
-    name: "Jagdeep Dhankhar",
-    title: "Vice President of India",
-    convocation: "4th Convocation",
+    name: "Alok Kumar",
+    title: "President, AkzoNobel India",
+    convocation: "Industry Mentor",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600",
-    quote: "Empowering youth to drive India's growth and innovation.",
+    quote: "Practical exposure and corporate mentorship bridge the gap for young managers.",
     tagColor: "from-purple-500 to-indigo-500"
   },
   {
     id: 5,
-    name: "Rohit Sharma",
-    title: "Indian Cricketer & Captain",
-    convocation: "5th Convocation",
+    name: "Anshu Gupta",
+    title: "Founder, Goonj (Magsaysay Awardee)",
+    convocation: "Keynote Speaker",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600",
-    quote: "Leadership is about trust, teamwork, and standing together.",
+    quote: "Business must solve real social problems to create lasting national impact.",
     tagColor: "from-rose-500 to-orange-500"
   }
 ];
@@ -91,7 +91,7 @@ export default function DiverseCohort() {
           </div>
 
           <button className="h-12 px-6 bg-white hover:bg-zinc-100 text-zinc-950 text-xs font-extrabold rounded-full flex items-center gap-3 transition duration-300 shadow-xl cursor-pointer group">
-            <span>Watch PGP Batch of 2025 Convocation Video</span>
+            <span>Watch PGDM Convocation Video</span>
             <svg className="w-4 h-4 text-zinc-900 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>

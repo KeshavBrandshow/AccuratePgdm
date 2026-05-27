@@ -234,13 +234,13 @@ export default function Hero() {
                   Learn
                 </h1>
                 <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-zinc-900 tracking-tight leading-none flex flex-wrap items-baseline gap-x-4">
-                  <span className="font-sans">by</span>
+                  <span className="font-sans">to</span>
                   <span className="relative inline-block font-serif italic font-normal text-zinc-900">
-                    Doing
+                    Lead
 
                     {/* Wavy Underlines under "Doing" */}
                     <svg
-                      className="absolute -bottom-4 left-0 w-full h-5 overflow-visible"
+                      className="absolute -bottom-2 left-0 w-full h-5 overflow-visible"
                       viewBox="0 0 100 12"
                       fill="none"
                       preserveAspectRatio="none"
@@ -294,28 +294,28 @@ export default function Hero() {
               <div className="flex flex-wrap items-center gap-8 pt-10 border-t border-zinc-200 mt-6 max-w-lg">
                 <div className="flex items-center gap-2">
                   <span className="bg-red-600 px-1.5 py-0.5 rounded-[3px] text-[10px] tracking-wider text-white font-black uppercase">
-                    OBSIS
+                    AICTE
                   </span>
-                  <span className="text-zinc-800 font-extrabold text-[11px] tracking-widest">IMPACT</span>
+                  <span className="text-zinc-800 font-extrabold text-[11px] tracking-widest">APPROVED</span>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
-                    <span className="text-rose-600 text-[8px] font-black">E</span>
+                  <div className="w-9 h-9 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
+                    <span className="text-rose-600 text-[8px] font-black">NAAC</span>
                   </div>
                   <div className="flex flex-col text-left">
-                    <span className="text-[10px] font-extrabold text-zinc-800 leading-none">EFMD</span>
-                    <span className="text-[7px] text-zinc-500 leading-none tracking-wider">GLOBAL</span>
+                    <span className="text-[10px] font-extrabold text-zinc-800 leading-none">GRADE B++</span>
+                    <span className="text-[7px] text-zinc-500 leading-none tracking-wider">ACCREDITED</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <div className="bg-[#007bbf] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-[2px] leading-none">
-                    AACSB
+                    ESTD 2006
                   </div>
                   <div className="flex flex-col text-left">
-                    <span className="text-[9px] font-extrabold text-zinc-800 leading-none">Business Education</span>
-                    <span className="text-[7px] text-zinc-500 leading-none tracking-wider">Alliance Member</span>
+                    <span className="text-[9px] font-extrabold text-zinc-800 leading-none">20+ Years Excellence</span>
+                    <span className="text-[7px] text-zinc-500 leading-none tracking-wider">Greater Noida, Delhi NCR</span>
                   </div>
                 </div>
               </div>

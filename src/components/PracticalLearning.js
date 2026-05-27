@@ -3,20 +3,20 @@ import { useState } from "react";
 const cardsData = [
   {
     id: 1,
-    badge: "Startup Bootcamp",
-    title: "Start Your Journey by Building a Profitable Business",
-    highlightText: "Profitable Business",
+    badge: "Live Venture Challenge",
+    title: "Start Your Journey by Building a Live Venture",
+    highlightText: "Live Venture",
     highlightColor: "text-[#e6a600]",
     strokeColor: "#e6a600",
-    description: "Form teams, secure seed funding, master product sourcing, branding, digital campaigns, and run actual business units right here on campus.",
-    targetText: "Target",
-    targetVal: "₹1Cr+",
-    targetSub: "in 90 Days",
-    stat1Label: "Revenue Generated",
-    stat1Val: "₹5Cr+",
+    description: "Form teams, Pitch startup ideas to EDIC, get incubation resources, master branding, digital campaigns, and run actual mock business units right here on campus.",
+    targetText: "Seed Support",
+    targetVal: "₹10 Lakhs",
+    targetSub: "Incubation Pool",
+    stat1Label: "Incubated Startups",
+    stat1Val: "25+ Ventures",
     stat2Label: "Participating Teams",
-    stat2Val: "130+ Teams",
-    buttonText: "Download Startup Bootcamp Report",
+    stat2Val: "80+ Teams",
+    buttonText: "Download ED-Cell Report",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800",
     badgeColor: "bg-[#e6a600]/90",
     targetLabel: "Live Venture Challenge",
@@ -24,19 +24,19 @@ const cardsData = [
   },
   {
     id: 2,
-    badge: "Corporate Casing",
-    title: "Solve Real Business Problems for Global Brands",
-    highlightText: "Global Brands",
+    badge: "Corporate Projects",
+    title: "Solve Real Business Problems for Recruiting Partners",
+    highlightText: "Recruiting Partners",
     highlightColor: "text-[#064ca2]",
     strokeColor: "#064ca2",
-    description: "Work directly with industry mentors on live consultative assignments. Present strategic recommendations directly to executive boards of top MNCs.",
+    description: "Work directly with industry mentors on live consultative assignments. Present strategic recommendations directly to executives of prominent recruiting partners.",
     targetText: "Mentors",
-    targetVal: "80+",
-    targetSub: "Industry Leaders",
-    stat1Label: "Live Case Studies",
-    stat1Val: "50+ Cases",
-    stat2Label: "Top Recruiter",
-    stat2Val: "350+ Brands",
+    targetVal: "50+",
+    targetSub: "Corporate Experts",
+    stat1Label: "Live Projects Done",
+    stat1Val: "120+ Projects",
+    stat2Label: "Recruiting Brands",
+    stat2Val: "150+ Brands",
     buttonText: "Download Corporate Project Handbook",
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800",
     badgeColor: "bg-[#064ca2]/90",
@@ -45,23 +45,23 @@ const cardsData = [
   },
   {
     id: 3,
-    badge: "Global Immersion",
-    title: "Gain International Exposure and Global Mindset",
+    badge: "Industrial Immersion",
+    title: "Gain Practical Industry Exposure and Global Mindset",
     highlightText: "Global Mindset",
     highlightColor: "text-emerald-600",
     strokeColor: "#059669",
-    description: "Visit global financial hubs, attend business workshops at top international universities, and study global supply chain networks on-site.",
+    description: "Visit prominent manufacturing and technology hubs, attend corporate workshops, and study operations of supply chain networks on-site.",
     targetText: "Visits",
-    targetVal: "3+ Hubs",
-    targetSub: "Singapore, Dubai",
-    stat1Label: "International Partners",
-    stat1Val: "15+ Partners",
+    targetVal: "5+ Hubs",
+    targetSub: "Corporate Hubs",
+    stat1Label: "Corporate Partners",
+    stat1Val: "50+ Partners",
     stat2Label: "Alumni Network",
-    stat2Val: "5000+ Global",
-    buttonText: "Download Global Immersion Brochure",
+    stat2Val: "20,000+ Global",
+    buttonText: "Download Industrial Visit Brochure",
     image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800",
     badgeColor: "bg-emerald-600/90",
-    targetLabel: "International Study Tour",
+    targetLabel: "Corporate Study Tour",
     type: "global",
   }
 ];
@@ -141,10 +141,10 @@ export default function PracticalLearning() {
           <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 tracking-tight leading-tight max-w-2xl">
             Learn <span className="font-serif italic font-bold text-[#e6a600]">
               'Practically'
-            </span> by Building Real Businesses
+            </span> Through Corporate Immersions
           </h2>
           <p className="text-zinc-500 mt-3 text-sm md:text-base font-medium">
-            Experiential and action-based learning modules designed to build industry readiness.
+            An industry-aligned pedagogy and continuous live projects to make you corporate-ready from day one.
           </p>
         </div>
 
